@@ -38,6 +38,9 @@ class MainUI(Gtk.UIManager):
             ('copy_image', '', _('Copy _Image'),
                 None, _('Copies the current image to clipboard.'),
                 window.clipboard.copy_image),
+            ('delete', Gtk.STOCK_DELETE, _('_Delete'),
+                None, _('Deletes the current file or archive from disk.'),
+                window.delete),
             ('next_page', Gtk.STOCK_GO_FORWARD, _('_Next page'),
              None, _('Next page'), _action_lambda(window.flip_page, +1)),
             ('previous_page', Gtk.STOCK_GO_BACK, _('_Previous page'),
@@ -239,6 +242,8 @@ class MainUI(Gtk.UIManager):
                     <separator />
                     <menu action="menu_open_with"></menu>
                     <separator />
+                    <menuitem action="delete" />
+                    <separator />
                     <menuitem action="minimize" />
                     <menuitem action="close" />
                     <menuitem action="save_and_quit" />
@@ -436,6 +441,7 @@ class MainUI(Gtk.UIManager):
                    'extract_page',
                    'save_and_quit',
                    'close',
+                   'delete',
                    'copy_image_path',
                    'copy_image',
                    'slideshow',

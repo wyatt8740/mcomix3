@@ -8,9 +8,10 @@ from mcomix import tools
 
 IDENTITY_ZOOM = 1.0
 IDENTITY_ZOOM_LOG = 0
-USER_ZOOM_LOG_SCALE1 = 4.0
-MIN_USER_ZOOM_LOG = -20
-MAX_USER_ZOOM_LOG = 12
+# multiplied original author's values by 4. Seems to work well for what I want.
+USER_ZOOM_LOG_SCALE1 = 16.0
+MIN_USER_ZOOM_LOG = -80
+MAX_USER_ZOOM_LOG = 48
 
 class ZoomModel(object):
     ''' Handles zoom and fit modes. '''

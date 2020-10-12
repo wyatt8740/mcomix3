@@ -1,0 +1,11 @@
+widget statusbar.horizontal {
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+}
+
+treeview.view {
+  background-color: #D9D2C6;
+  color: #000000;
+}

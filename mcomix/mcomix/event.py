@@ -21,6 +21,8 @@ class EventHandler(object):
         self._pressed_pointer_pos_x = 0
         self._pressed_pointer_pos_y = 0
 
+        # Custom addition for quickly enabling/disabling the "click-previous" navigation by clicking on left side of image
+        self.click_previous_nav = False
         #: For scrolling "off the page".
         self._extra_scroll_events = 0
         #: If True, increment _extra_scroll_events before switchting pages
@@ -197,6 +199,8 @@ class EventHandler(object):
                          self._window.close_program)
         manager.register('save_and_quit',
                          self._window.save_and_terminate_program)
+        manager.register('delete',
+                         self._window.delete)
         manager.register('extract_page',
                          self._window.extract_page)
         manager.register('refresh_archive',
@@ -415,16 +419,19 @@ class EventHandler(object):
                event.y_root == self._pressed_pointer_pos_y and \
                not self._window.was_out_of_focus:
 
-                # right to next, left to previous, no matter the double page mode
-                direction = 1 if event.x > widget.get_property('width') // 2 else -1
+                direction = 1
 
-                # if in manga mode, left to next, right to previous
-                if self._window.is_manga_mode:
-                    direction *= -1
+                if self.click_previous_nav == True: # internal variable for hack
+                    # right to next, left to previous, no matter the double page mode
+                    direction = 1 if event.x > widget.get_property('width') // 2 else -1
 
-                # over flip with shift pressed
-                if event.get_state() & Gdk.ModifierType.SHIFT_MASK:
-                    direction *= 10
+                    # if in manga mode, left to next, right to previous
+                    if self._window.is_manga_mode:
+                        direction *= -1
+
+                    # over flip with shift pressed
+                    if event.get_state() & Gdk.ModifierType.SHIFT_MASK:
+                        direction *= 10
 
                 self._flip_page(direction)
 

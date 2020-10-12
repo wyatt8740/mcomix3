@@ -642,13 +642,27 @@ def init_supported_formats():
                 fmt[0].add(m)
 
     # cache a supported extensions list
+    # ignore PDF (except in archives), photoshop, postscript.
     for mimes,exts in SUPPORTED_IMAGE_FORMATS.values():
-        SUPPORTED_IMAGE_EXTS.update(exts)
-        SUPPORTED_IMAGE_MIMES.update(mimes)
+        mimeswitch = {
+            "{'application/pdf'}": 'match',
+            "{'image/vnd.adobe.photoshop'}": 'match',
+            "{'application/postscript'}": 'match',
+        }
+        if mimeswitch.get(repr(mimes), 'no_match') == 'no_match':
+            # Debug: show what is being added
+            # print("Adding "+ repr(mimes))
+            SUPPORTED_IMAGE_EXTS.update(exts)
+            SUPPORTED_IMAGE_MIMES.update(mimes)
+        # Debug: show what is being skipped
+        # else:
+        #   print("Skipping " + repr(mimes))
 
 def get_supported_formats():
     if not SUPPORTED_IMAGE_FORMATS:
         init_supported_formats()
+        # print all mime types that are reportedly supported
+        # print("****MIMES****:" + repr(SUPPORTED_IMAGE_MIMES))
     return SUPPORTED_IMAGE_FORMATS
 
 def is_image_file(path, check_mimetype=False):
