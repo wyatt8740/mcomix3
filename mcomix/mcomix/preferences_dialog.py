@@ -665,7 +665,8 @@ class _PreferencesDialog(Gtk.Dialog):
         items = (
                 (_('Normal (fast)'), int(GdkPixbuf.InterpType.TILES)),
                 (_('Bilinear'), int(GdkPixbuf.InterpType.BILINEAR)),
-                (_('Hyperbolic (slow)'), int(GdkPixbuf.InterpType.HYPER)))
+                (_('Hyperbolic (slow)'), int(GdkPixbuf.InterpType.HYPER)),
+                (_('Nearest-Neighbour'), int(GdkPixbuf.InterpType.NEAREST)))
 
         selection = prefs['scaling quality']
 
@@ -690,7 +691,11 @@ class _PreferencesDialog(Gtk.Dialog):
         ''' Creates combo box for PIL filter to scale with in main view '''
         items = (
                 (_('Off'), -1), # -1 defers to 'scaling quality'
-                (_('Lanczos'), int(PIL.Image.LANCZOS))) # PIL type 1.
+                (_('Lanczos'), int(PIL.Image.LANCZOS)), # PIL type 1.
+                (_('Bicubic'), int(PIL.Image.BICUBIC)),
+                (_('Hamming'), int(PIL.Image.HAMMING)),
+                (_('Box'), int(PIL.Image.BOX)))
+
 
         selection = prefs['pil scaling filter']
 
