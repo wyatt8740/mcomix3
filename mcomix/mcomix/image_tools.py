@@ -21,6 +21,9 @@ from mcomix import tools
 from mcomix.lib import reader
 from mcomix.preferences import prefs
 
+# zip bomb warnings in PIL, causes stupid warnings on big images
+Image.MAX_IMAGE_PIXELS = None
+
 if tools.use_gui():
     from gi.repository import Gdk, Gtk
 
