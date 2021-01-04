@@ -129,6 +129,8 @@ class MainUI(Gtk.UIManager):
                 None, None, window.change_hide_all),
             ('manga_mode', 'mcomix-manga', _('_Manga mode'),
                 None, _('Manga mode'), window.change_manga_mode),
+            ('pixel_art_mode', None, _('Pi_xel art mode'),
+                None, _('Pi_xel art mode'), window.change_pixel_art_mode),
             ('invert_scroll', Gtk.STOCK_UNDO, _('Invert smart scroll'),
                 None, _('Invert smart scrolling direction.'), window.change_invert_scroll),
             ('keep_transformation', None, _('_Keep transformation'),
@@ -262,6 +264,8 @@ class MainUI(Gtk.UIManager):
                     <menuitem action="fullscreen" />
                     <menuitem action="double_page" />
                     <menuitem action="manga_mode" />
+                    <separator />
+                    <menuitem action="pixel_art_mode" />
                     <separator />
                     <menuitem action="best_fit_mode" />
                     <menuitem action="fit_width_mode" />

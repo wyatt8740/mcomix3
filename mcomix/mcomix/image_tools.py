@@ -168,6 +168,11 @@ def fit_in_rectangle(src, width, height, keep_ratio=True, scale_up=False,
     if pil_filter is None:
         pil_filter = prefs['pil scaling filter']
 
+    if prefs['default pixel art mode']:
+        # this overrides all other filtering options
+        scaling_quality = GdkPixbuf.InterpType.NEAREST
+        pil_filter = False
+
     src_width = src.get_width()
     src_height = src.get_height()
 

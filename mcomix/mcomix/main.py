@@ -53,6 +53,7 @@ class MainWindow(Gtk.Window):
         # Used to detect window fullscreen state transitions.
         self.was_fullscreen = False
         self.is_manga_mode = False
+        self.is_pixel_art_mode = False
         self.previous_size = (None, None)
         self.can_lose_focus = False # don't care if window was focused when clicked if false
         self.was_out_of_focus = False
@@ -784,6 +785,11 @@ class MainWindow(Gtk.Window):
         prefs['default manga mode'] = toggleaction.get_active()
         self.is_manga_mode = toggleaction.get_active()
         self._update_page_information()
+        self.draw_image()
+
+    def change_pixel_art_mode(self, toggleaction):
+        prefs['default pixel art mode'] = toggleaction.get_active()
+        self.is_pixel_art_mode = toggleaction.get_active()
         self.draw_image()
 
     def change_invert_scroll(self, toggleaction):

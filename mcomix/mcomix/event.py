@@ -145,6 +145,8 @@ class EventHandler(object):
 
         manager.register('manga_mode',
                          self._window.actiongroup.get_action('manga_mode').activate)
+        manager.register('pixel_art_mode',
+                         self._window.actiongroup.get_action('pixel_art_mode').activate)
         manager.register('invert_scroll',
                          self._window.actiongroup.get_action('invert_scroll').activate)
         manager.register('keep_transformation',

@@ -107,6 +107,8 @@ BINDING_INFO = {
                     'group': _('View mode')},
     'manga_mode': {'title': _('Manga mode'),
                    'group': _('View mode')},
+    'pixel_art_mode': {'title': _('Pixel art mode'),
+                              'group': _('View mode')},
     'invert_scroll': {'title': _('Invert smart scroll'),
                       'group': _('View mode')},
 
@@ -263,7 +265,8 @@ DEFAULT_BINDINGS = {
 
     'double_page':['d'],
     'manga_mode':['m'],
-    'invert_scroll':['x'],
+    'pixel_art_mode':['x'],
+    'invert_scroll':[],
 
     'lens':['l'],
     'stretch':['y'],
